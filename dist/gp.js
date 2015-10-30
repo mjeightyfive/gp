@@ -1,4 +1,4 @@
-/*! call-picasa v0.0.5 | (c) 2015 @mjeightyfive | https://github.com/mjeightyfive/call-picasa */
+/*! gp v0.0.1 | (c) 2015 @mjeightyfive | https://github.com/mjeightyfive/gp */
 'use strict';
 
 (function(root, factory) {
@@ -8,7 +8,7 @@
     } else if(typeof exports === 'object') {
         module.exports = factory;
     } else {
-        root.Callpicasa = factory();
+        root.GP = factory();
     }
 })(this, function() {
 
@@ -66,9 +66,9 @@
         excludeAlbumsTypes: []
     };
 
-    function Callpicasa(o) {
+    function GP(o) {
 
-        var opts = merge(o || {}, Callpicasa.options, options);
+        var opts = merge(o || {}, GP.options, options);
 
         var getUserData = function(cb) {
             get(APIURL + opts.userID + '?' + FORMAT, cb);
@@ -154,8 +154,6 @@
                 getImagesByAlbumsURLs(urls, function(image) {
 
                     if(cb) {
-                        console.log('image', image);
-                        // console.log('images', images);
                         cb(image);
                     }
                 });
@@ -210,5 +208,6 @@
 
     }
 
-    return Callpicasa;
+    return GP;
 });
+

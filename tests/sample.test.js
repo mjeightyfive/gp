@@ -8,13 +8,13 @@
         it('should have new userID than the default one', function(done) {
 
             var options = {
-                userID: '114512439756754175212'
+                userID: 'mjeightyfive'
             };
 
-            var picasa = new Callpicasa(options);
+            var gp = new GP(options);
 
-            picasa.getUserData(function(data) {
-                expect(data.feed.photo$user.to.equal('114512439756754175212'));
+            gp.getUserData(function(data) {
+                expect(data.feed.photo$user.to.equal('mjeightyfive'));
             });
 
             done();
@@ -23,3 +23,4 @@
     });
 
 })();
+

@@ -7,7 +7,7 @@
     } else if(typeof exports === 'object') {
         module.exports = factory;
     } else {
-        root.Callpicasa = factory();
+        root.GP = factory();
     }
 })(this, function() {
 
@@ -65,9 +65,9 @@
         excludeAlbumsTypes: []
     };
 
-    function Callpicasa(o) {
+    function GP(o) {
 
-        var opts = merge(o || {}, Callpicasa.options, options);
+        var opts = merge(o || {}, GP.options, options);
 
         var getUserData = function(cb) {
             get(APIURL + opts.userID + '?' + FORMAT, cb);
@@ -207,5 +207,6 @@
 
     }
 
-    return Callpicasa;
+    return GP;
 });
+
