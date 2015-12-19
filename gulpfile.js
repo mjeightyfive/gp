@@ -8,9 +8,9 @@ var gulp = require('gulp'),
 
 var $ = require('gulp-load-plugins')();
 
-var major = $.util.env.major || false;
-var minor = $.util.env.minor || false;
-var patch = $.util.env.patch || false;
+var major = $.util.env.major || false,
+    minor = $.util.env.minor || false,
+    patch = $.util.env.patch || false;
 
 var pkg = require('./package.json');
 
@@ -23,7 +23,6 @@ var banner = [
     ' */',
     '\n'
 ].join('');
-
 
 if(!major && !minor) {
     patch = true;
@@ -69,18 +68,14 @@ gulp.task('test', function() {
 
 gulp.task('bump', function() {
     gulp.src(['./bower.json', './package.json'])
-        .pipe($.
-            if(major, $.bump({
-                type: 'major'
-            })))
-        .pipe($.
-            if(minor, $.bump({
-                type: 'minor'
-            })))
-        .pipe($.
-            if(patch, $.bump({
-                type: 'patch'
-            })))
+        .pipe($.if(major, $.bump({
+            type: 'major'
+        })))
+        .pipe($.if(minor, $.bump({
+            type: 'minor'
+        })))
+        .pipe($.if(patch, $.bump({
+            type: 'patch'
+        })))
         .pipe(gulp.dest('./'));
 });
-
