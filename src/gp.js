@@ -121,12 +121,14 @@
 
         var getImagesByAlbumURL = function(url, cb) {
             var results = [];
-            var append = opts.size + '/';
+            var append = 's0-' + opts.size;
             var match = /([^\/]+)$/;
             get(url, function(album) {
                 var json = JSON.parse(album);
                 forEach(json.feed.entry, function(entry) {
+                    // console.log(entry.content.src);
                     var newUrl = entry.content.src.replace(match, append);
+                    console.log(newUrl);
                     results.push(newUrl);
                 });
 
@@ -151,7 +153,6 @@
         var getAlbumsImages = function(cb) {
             getAlbumsURLs(function(urls) {
                 getImagesByAlbumsURLs(urls, function(image) {
-
                     if(cb) {
                         cb(image);
                     }
