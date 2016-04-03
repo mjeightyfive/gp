@@ -1,4 +1,4 @@
-/*! gp v0.0.1 | (c) 2015 @mjeightyfive | https://github.com/mjeightyfive/gp */
+/*! gp v0.0.2 | (c) 2016 @mjeightyfive | https://github.com/mjeightyfive/gp */
 'use strict';
 
 (function(root, factory) {
@@ -58,7 +58,7 @@
         APIURL = 'https://picasaweb.google.com/data/feed/api/user/';
         // albumIDPath = 'albumid/';
 
-    // built-in options
+    // defaults
     var options = {
         userID: 'mjeightyfive',
         size: 'h720',
@@ -122,13 +122,16 @@
 
         var getImagesByAlbumURL = function(url, cb) {
             var results = [];
-            var append = opts.size + '/';
-            var match = /([^\/]+)$/;
+            var append = 's0-' + opts.size;
+            var filenameRegex = /([^\/]+)$/;
             get(url, function(album) {
                 var json = JSON.parse(album);
+                var newUrl = '';
                 forEach(json.feed.entry, function(entry) {
-                    var newUrl = entry.content.src.replace(match, append);
-                    results.push(newUrl);
+                    entry.content.src.replace(filenameRegex, function(matched) {
+                        newUrl = entry.content.src.replace(filenameRegex, '') + append + '/' + matched;
+                        results.push(newUrl);
+                    });
                 });
 
                 if(cb) {
@@ -152,7 +155,6 @@
         var getAlbumsImages = function(cb) {
             getAlbumsURLs(function(urls) {
                 getImagesByAlbumsURLs(urls, function(image) {
-
                     if(cb) {
                         cb(image);
                     }
@@ -210,4 +212,3 @@
 
     return GP;
 });
-

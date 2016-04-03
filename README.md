@@ -1,6 +1,6 @@
-# gp.js
+# gp
 
-> Simple JavaScript helper library for querying Google Photos API
+> Simple JavaScript helper library for querying Google Plus photos
 
 ## Examples
 
