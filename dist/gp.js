@@ -84,19 +84,31 @@
                     var albumType = value.gphoto$albumType;
 
                     if(albumName) {
-                        var isAlbumNameExcluded = opts.excludeAlbumsNames.indexOf(albumName) !== -1;
 
-                        if(!isAlbumNameExcluded) {
-                            if(albumType) {
-                                var albumTypeTitle = value.gphoto$albumType.$t;
-                                var isAlbumTypeExcluded = opts.excludeAlbumsTypes.indexOf(albumTypeTitle) !== -1;
+                        if(opts.excludeAlbumsNames !== undefined) {
 
-                                if(!isAlbumTypeExcluded) {
+                            var isAlbumNameExcluded = opts.excludeAlbumsNames.indexOf(albumName) !== -1;
+
+                            if(!isAlbumNameExcluded) {
+                                if(albumType) {
+                                    var albumTypeTitle = value.gphoto$albumType.$t;
+
+                                    if(opts.excludeAlbumsTypes !== undefined) {
+                                        var isAlbumTypeExcluded = opts.excludeAlbumsTypes.indexOf(albumTypeTitle) !== -1;
+
+                                        if(!isAlbumTypeExcluded) {
+                                            results.push(value);
+                                        }
+                                    } else {
+                                        results.push(value);
+                                    }
+
+                                } else {
                                     results.push(value);
                                 }
-                            } else {
-                                results.push(value);
                             }
+                        } else {
+                            results.push(value);
                         }
                     }
                 });
