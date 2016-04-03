@@ -18,16 +18,16 @@
         photosContainer.append('<img class="pure-img" src="' + image + '" alt="Image" />');
     });
 
-    gp.getAlbums(function(data) {
-        console.log('data', data);
-    });
+    // gp.getAlbums(function(data) {
+    //     console.log('data', data);
+    // });
 
     // gp.getUserData(function(data) {
     //     console.log('data', data);
     // });
 
-    gp.getAlbumsURLs(function(data) {
-        console.log(data); // user's albums API urls
-    });
+    // gp.getAlbumsURLs(function(data) {
+    //     console.log(data); // user's albums API urls
+    // });
 
 })();

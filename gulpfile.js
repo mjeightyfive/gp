@@ -50,7 +50,8 @@ gulp.task('scripts', function() {
         .pipe($.uglify({
             preserveComments: 'some'
         }))
-        .pipe(gulp.dest('./dist'));
+        .pipe(gulp.dest('./dist'))
+        .pipe(gulp.dest('./site'));
 });
 
 gulp.task('jshint', function() {
