@@ -7,7 +7,7 @@
         // userID: '114512439756754175212',
         size: 'h1080', // h + required height or w + required width, e.g. h100 or w500
         excludeAlbumsNames: ['Scrapbook Photos', 'Profile Photos'], // albums to ignore (optional)
-        excludeAlbumsTypes: ['Buzz'] // albums types to ignore (optional)
+        // excludeAlbumsTypes: [] // albums types to ignore (optional)
     };
 
     var gp = new GP(options);
@@ -18,17 +18,16 @@
         photosContainer.append('<img class="pure-img" src="' + image + '" alt="Image" />');
     });
 
-    // gp.getAlbums(function(data) {
-    //     console.log('data', data);
-    // });
-    //
+    gp.getAlbums(function(data) {
+        console.log('data', data);
+    });
+
     // gp.getUserData(function(data) {
     //     console.log('data', data);
     // });
 
-
-    // gp.getAlbumsURLs(function(data) {
-    //     console.log(data); // user's albums API urls
-    // });
+    gp.getAlbumsURLs(function(data) {
+        console.log(data); // user's albums API urls
+    });
 
 })();
