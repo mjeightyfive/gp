@@ -129,7 +129,6 @@
                 forEach(json.feed.entry, function(entry) {
                     entry.content.src.replace(filenameRegex, function(matched) {
                         newUrl = entry.content.src.replace(filenameRegex, '') + append + '/' + matched;
-                        console.log('newUrl', newUrl)
                         results.push(newUrl);
                     });
                 });
