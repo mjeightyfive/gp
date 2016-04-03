@@ -5,7 +5,7 @@
     var options = {
         userID: '109473512611685902219',
         // userID: '114512439756754175212',
-        size: 'h120', // h + required height or w + required width, e.g. h100 or w500
+        size: 'h1080', // h + required height or w + required width, e.g. h100 or w500
         excludeAlbumsNames: ['Scrapbook Photos', 'Profile Photos'], // albums to ignore (optional)
         excludeAlbumsTypes: ['Buzz'] // albums types to ignore (optional)
     };
