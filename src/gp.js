@@ -12,9 +12,9 @@
 })(this, function() {
 
     function merge(obj) {
-        for(var i = 1; i < arguments.length; i++) {
+        for (var i = 1; i < arguments.length; i++) {
             var def = arguments[i];
-            for(var n in def) {
+            for (var n in def) {
                 if(obj[n] === 'undefined') {
                     obj[n] = def[n];
                 }
@@ -41,13 +41,13 @@
     var forEach = function(collection, cb, scope) {
 
         if(Object.prototype.toString.call(collection) === '[object Object]') {
-            for(var prop in collection) {
+            for (var prop in collection) {
                 if(Object.prototype.hasOwnProperty.call(collection, prop)) {
                     cb.call(scope, collection[prop], prop, collection);
                 }
             }
         } else {
-            for(var i = 0, len = collection.length; i < len; i++) {
+            for (var i = 0, len = collection.length; i < len; i++) {
                 cb.call(scope, collection[i], i, collection);
             }
         }
@@ -55,7 +55,7 @@
 
     var FORMAT = 'alt=json',
         APIURL = 'https://picasaweb.google.com/data/feed/api/user/';
-    // albumIDPath = 'albumid/';
+        // albumIDPath = 'albumid/';
 
     // defaults
     var options = {
@@ -122,14 +122,16 @@
         var getImagesByAlbumURL = function(url, cb) {
             var results = [];
             var append = 's0-' + opts.size;
-            var match = /([^\/]+)$/;
+            var filenameRegex = /([^\/]+)$/;
             get(url, function(album) {
                 var json = JSON.parse(album);
+                var newUrl = '';
                 forEach(json.feed.entry, function(entry) {
-                    // console.log(entry.content.src);
-                    var newUrl = entry.content.src.replace(match, append);
-                    console.log(newUrl);
-                    results.push(newUrl);
+                    entry.content.src.replace(filenameRegex, function(matched) {
+                        newUrl = entry.content.src.replace(filenameRegex, '') + append + '/' + matched;
+                        console.log('newUrl', newUrl)
+                        results.push(newUrl);
+                    });
                 });
 
                 if(cb) {
